@@ -18,21 +18,41 @@
 
 #include <limits.h>
 #include <stdio.h>
+#include <time.h>
 
 int main(void)
 {
-    char *pnavn = "var-bit-print";
-    char *pversjon = "1.2"; 
-    printf("%s v%s\n", pnavn, pversjon);
-    puts("====================");
-    printf("char er %zu bits\n",      CHAR_BIT * sizeof( char )      );
-    printf("short er %zu bits\n",     CHAR_BIT * sizeof( short )     );
-    printf("int er %zu bits\n",       CHAR_BIT * sizeof( int  )      );
-    printf("float er %zu bits\n",     CHAR_BIT * sizeof( float )     );
-    printf("double er %zu bits\n",    CHAR_BIT * sizeof( double )    );
-    printf("long er %zu bits\n",      CHAR_BIT * sizeof( long )      );
-    printf("long long er %zu bits\n", CHAR_BIT * sizeof( long long ) );
-    int gjSnitt = ((CHAR_BIT * sizeof(char) + CHAR_BIT * sizeof(short) + CHAR_BIT * sizeof(int) + CHAR_BIT * sizeof(float) + CHAR_BIT * sizeof(double) + CHAR_BIT * sizeof(long) + CHAR_BIT * sizeof(long long)) / 7 );
-    printf("\nGjennomsnitt: %d bits\n", gjSnitt);
+    const char *pn = "var-bit-print";
+    const char *pv = "1.3";
+
+    printf("%s v%s\n", pn, pv);
+    puts("=========================");
+
+    printf("char is      %2zu bits\n", CHAR_BIT * sizeof(char));
+    printf("short is     %2zu bits\n", CHAR_BIT * sizeof(short));
+    printf("int is       %2zu bits\n", CHAR_BIT * sizeof(int));
+    printf("float is     %2zu bits\n", CHAR_BIT * sizeof(float));
+    printf("double is    %2zu bits\n", CHAR_BIT * sizeof(double));
+    printf("long is      %2zu bits\n", CHAR_BIT * sizeof(long));
+    printf("long long is %2zu bits\n", CHAR_BIT * sizeof(long long));
+    printf("time_t is    %2zu bits\n", CHAR_BIT * sizeof(time_t));
+    printf("pointer * is %2zu bits\n", CHAR_BIT * sizeof(void *));
+
+    size_t totalBits = CHAR_BIT * (
+        sizeof(char) +
+        sizeof(short) +
+        sizeof(int) +
+        sizeof(float) +
+        sizeof(double) +
+        sizeof(long) +
+        sizeof(long long) +
+        sizeof(time_t) +
+        sizeof(void *)
+    );
+
+    puts("-------------------------");
+    double avg = (double)totalBits / 9.0;
+    printf("\nAverage:     %.2f bits\n", avg);
+
     return 0;
 }

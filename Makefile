@@ -21,10 +21,10 @@ $(BIN32): $(SRC)
 
 # Kompiler og kjør begge for å sammenligne
 run: all
-	@echo "=== Kjører 64-bit versjon ==="
+	@echo "=== Running 64-bit version ==="
 	./$(BIN64)
 	@echo ""
-	@echo "=== Kjører 32-bit versjon ==="
+	@echo "=== Running 32-bit version ==="
 	./$(BIN32)
 
 # Rydd opp kompilerte filer
